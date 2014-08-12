@@ -1,10 +1,33 @@
 <ion-view title="Photos">
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="(photoId, photo) in photos" type="item-text-wrap" href="#/tab/photo/{{photo.id}}">
-        {{photoId}}
+      <ion-item ng-repeat="(photoId, photo) in photos | orderBy:photoId | reverse" type="item-text-wrap">
+
+	<br />
+	<div class="list card">
+
+	  <div class="item item-image">
+            <img src="{{photo.link}}" />
+	  </div>
+
+	  <a class="item item-icon-left assertive" href="#">
+	    <i class="icon ion-information-circled"></i>
+	    Description: {{photo.description}}<br />
+	    Location: {{photo.location}}<br />
+	    Date: {{photo.date}}
+	  </a>
+
+	</div>
       </ion-item>
     </ion-list>
-
+    <div class="list">
+      <label class="item item-input">
+	<input type="text" placeholder="link" ng-model="photo.link">
+      </label>
+      <label class="item item-input">
+	<textarea placeholder="Description" ng-model="photo.description"></textarea>
+      </label>
+    </div>
+    <input class="button" type="submit" name="submitPhoto" value="Submit Photo" ng-click="submitPhoto()"/>
   </ion-content>
 </ion-view>
